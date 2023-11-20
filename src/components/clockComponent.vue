@@ -1,5 +1,6 @@
 <template>
     <dialComponent :time="dateStore.time" />
+    <secondaryComponent :dayOfWeek="dateStore.dayOfWeek" />
     <div>{{ dateStore.currentDate }}</div>
 </template>
 <script setup>

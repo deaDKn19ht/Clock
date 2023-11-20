@@ -1,7 +1,10 @@
 import { defineStore } from "pinia";
 import { ref, watchEffect } from "vue";
+import { useDateFormatStore } from "./dateFormatStore";
 
 export const useDateStore = defineStore("dateStore", () => {
+  const { dateFormat } = useDateFormatStore();
+
   const time = ref("");
   const currentDate = ref("");
   const dayOfWeek = ref("");
@@ -19,8 +22,12 @@ export const useDateStore = defineStore("dateStore", () => {
     const minutes = dateNow.getMinutes();
     const seconds = dateNow.getSeconds();
 
-    time.value = `${hours}:${minutes}:${seconds}`;
-    currentDate.value = `${date}/${month}/${year}`;
+    time.value = `${dateFormat(hours)}:${dateFormat(minutes)}:${dateFormat(
+      seconds
+    )}`;
+    currentDate.value = `${dateFormat(date)}/${dateFormat(month)}/${dateFormat(
+      year
+    )}`;
     dayOfWeek.value = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][day];
   };
 
