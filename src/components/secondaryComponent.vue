@@ -1,6 +1,6 @@
 <template>
-    <div>{{ props.dayOfWeek }}</div>
-    <div>
+    <div v-if="displayData">{{ props.dayOfWeek }}</div>
+    <div v-else>
         <buttonComponent :nameBtn="stopwatchStore.dot ? 'Pause' : 'Start'" @click="stopwatchStore.changeBtn" />
         <buttonComponent :nameBtn="'Reset'" @click="stopwatchStore.stopwatchReset" />
     </div>
@@ -12,7 +12,8 @@ import { useStopwatchStore } from '../store/stopwatchStore';
 const stopwatchStore = useStopwatchStore()
 
 const props = defineProps({
-    dayOfWeek: String
+    dayOfWeek: String,
+    displayData: Boolean,
 });
 
 const emits = defineEmits(['changeBtn', 'stopwatchReset']);
